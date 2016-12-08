@@ -2,7 +2,7 @@
 
 <p> The quick assessment tool is hosted on AWS, using the framework Python Flask. </p>
 
-<p> To run this project, simpley clone the git repository into your machine, and in the terminal use `python flaskapp.py`. </p> And then, open your browser can go to localhost:5000, you will see the homepage.
+<p> To run this project, simpley clone the git repository into your machine, and in the terminal use `python flaskapp.py`. And then, open your browser can go to localhost:5000, you will see the homepage. </p>
 
 <p> To configure with the Apache server, you may find this <a href="" ="http://www.datasciencebytes.com/bytes/2015/02/24/running-a-flask-app-on-aws-ec2/"> link </a> helpful. </p>
 
