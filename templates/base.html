@@ -28,9 +28,50 @@
             </nav>
             <h3 class="text-muted">Quick Assessment</h3>
         </div>
-	</div>
+     </div>
+     <br>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+          <p class="text-muted"> 
+              The <b>objective</b> of the quick assessment tool is to help the OSSpal admin team to efficiently evaluate and identify high quality FOSS projects based on quantifiable hard criteria. We evaluated the contributed projects using the quick assessment tool on a periodical basis, and then perform a team review on the results. After careful review and thorough consideration, we finally post the high quality FOSS projects that can meet our rigorous screening standard on OSSpal.
+          </p>
+          <p class="text-muted">
+              The ideal <b>use case</b> for the quick assessment tool is as the following. When a user type the project name into the search bar, after a few seconds, a detailed page will pop up, showing key quantifiable information of the project acquired from Open Hub and GitHub, such as number of project contributors, number of commits, lines of code, and project activity.
+          </p>
+        </div>
+        </div>
+      </div>
 
     {% block content %}
     {% endblock %}
+
+    <br>
+
+     <div class="container">
+        <div class="row">
+          <div class="col-sm-12 ">
+         
+             <p class="text-muted">   The most updated hard <b> criteria </b>  we used to screen FOSS projects for inclusion on OSSpal are listed below. Please note that the hard criteria will also be updated on a regular basis. </p>
+
+             <div class="row">
+                 <div class="col-sm-6 col-sm-offset-3">
+                     <p class="text-muted" text-align="center">      Open Hub Metrics with Optimal Thresholds (as of January 2017): </p>
+                     <p class="text-muted" text-align="center">      # of 12 Month Contributors ≥ 2 </p>
+                     <p class="text-muted" text-align="center">     # of Total Contributors ≥ 3 </p>
+                     <p class="text-muted" text-align="center">    # of 12 Month Commits ≥ 50 </p>
+                     <p class="text-muted" text-align="center">     # of Total Commits ≥ 1000 </p>
+        
+                     <p class="text-muted" text-align="center">     GitHub Metrics with Optimal Thresholds (as of January 2017): </p>
+                     <p class="text-muted" text-align="center">     # of Starts ≥ 100 </p>
+                     <p class="text-muted" text-align="center">    # of Forks ≥ 100 </p>
+                     <p class="text-muted" text-align="center">    # of Open Issues ≥ 5 </p>
+                     <p class="text-muted" text-align="center">     # of Subscribers ≥ 50 </p>
+                 </div>
+             </div>
+          
+        </div>
+        </div>
+      </div>
 </body>
 </html>

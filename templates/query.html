@@ -6,82 +6,120 @@
 
 <div class="grid">
   <div class="row">
-      <div class="col-sm-12 col-sm-offset-4 wow fadeInUp">
+      <div class="col-sm-12 col-sm-offset-3 wow fadeInUp">
           <div class="row">
-              <h3> Query <a href="https://www.openhub.net/"> Openhub </a> </h3>
+              <h3> Query <a href="https://www.openhub.net/"> Openhub </a>  <b> {{result.query_openhub_success}} </b>  </h3>
           </div>
       </div>
-    <div class="col-sm-12 col-sm-offset-4 c-form-box wow fadeInUp">
+    <div class="col-sm-9 col-sm-offset-3 c-form-box wow fadeInUp">
+        <div class="row">
+            <div class="col-sm-3">
+                <label> Query Item </label>
+            </div>
+            <div class="col-sm-3">
+                <label> Query result</label>
+            </div>
+            <div class="col-sm-3">
+               <label>  Judgement </label>
+            </div>
+        </div>
         <div class="row">
             <div class="col-sm-3">
                 <label> project_html_url </label>
             </div>
-            <div class="col-sm-9 text-left">
+            <div class="col-sm-3">
                <a href="{{result.project_html_url}}"> {{result.project_html_url}} </a>
+            </div>
+            <div class="col-sm-3">
+                <p></p>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-3">
                 <label> project_twelve_month_contributor_count </label>
             </div>
-            <div class="col-sm-9 text-left">
+            <div class="col-sm-3">
                 {{result.project_twelve_month_contributor_count}}
+            </div>
+             <div class="col-sm-3">
+               <p> {{result.project_twelve_month_contributor_count_filter}} </p>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-3">
                 <label> project_total_contributor_count </label>
             </div>
-            <div class="col-sm-9 text-left">
+            <div class="col-sm-3">
                 <p>{{result.project_total_contributor_count}}</p>
+            </div>
+             <div class="col-sm-3">
+               <p> {{result.project_total_contributor_count_filter}} </p>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-3">
                 <label> project_twelve_month_commit_count </label>
             </div>
-            <div class="col-sm-9 text-left">
+            <div class="col-sm-3">
                 <p> {{result.project_twelve_month_commit_count}}</p>
+            </div>
+             <div class="col-sm-3">
+               <p> {{result.project_twelve_month_commit_count_filter}} </p>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-3">
                 <label> project_total_commit_count </label>
             </div>
-            <div class="col-sm-9 text-left">
+            <div class="col-sm-3">
                 <p>{{result.project_total_commit_count}}</p>
+            </div>
+             <div class="col-sm-3">
+               <p> {{result.project_total_commit_count_filter}} </p>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-3">
                 <label> project_total_code_lines </label>
             </div>
-            <div class="col-sm-9 text-left">
+            <div class="col-sm-3">
                 <p>{{result.project_total_code_lines}}</p>
+            </div>
+             <div class="col-sm-3">
+               <p>  </p>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-3">
                 <label> project_main_language_name </label>
             </div>
-            <div class="col-sm-9 text-left">
+            <div class="col-sm-3">
                 <p> {{result.project_main_language_name}}</p>
+            </div>
+             <div class="col-sm-3">
+               <p>  </p>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-3">
                 <label> project_license </label>
             </div>
-            <div class="col-sm-9 text-left">
+            <div class="col-sm-3">
                 <p> {{result.project_license}}</p>
+            </div>
+             <div class="col-sm-3">
+               <p>  </p>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-3">
                 <label> project_project_activity_index_description </label>
             </div>
-            <div class="col-sm-9 text-left">
+            <div class="col-sm-3">
                 <p> {{result.project_project_activity_index_description}}</p>
+            </div>
+             <div class="col-sm-3">
+               <p> </p>
             </div>
         </div>
 
@@ -91,66 +129,93 @@
 
 
 <div class="row">
-      <div class="col-sm-12 col-sm-offset-4 wow fadeInUp">
+      <div class="col-sm-12 col-sm-offset-3 wow fadeInUp">
           <div class="row">
               <h3> Query <a href="https://github.com/"> Github </a> </h3>
           </div>
       </div>
-    <div class="col-sm-12 col-sm-offset-4 c-form-box wow fadeInUp">
+    <div class="col-sm-9 col-sm-offset-3 c-form-box wow fadeInUp">
+        <div class="row">
+            <div class="col-sm-3">
+                <label> Query Item </label>
+            </div>
+            <div class="col-sm-3">
+                <label> Query result</label>
+            </div>
+            <div class="col-sm-3">
+               <label>  Judgement </label>
+            </div>
+        </div>
         <div class="row">
             <div class="col-sm-3">
                 <label> github_url </label>
             </div>
-            <div class="col-sm-9 text-left">
+            <div class="col-sm-3">
                <a href="{{res.github_url}}"> {{res.github_url}} </a>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-3">
-                <label> number_of_starts </label>
+                <label> number_of_stars </label>
             </div>
-            <div class="col-sm-9 text-left">
-                {{res.number_of_starts}}
+            <div class="col-sm-3">
+                {{res.number_of_stars}}
+            </div>
+            <div class="col-sm-3">
+               <p> {{res.number_of_stars_filter}} </p>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-3">
                 <label> number_of_forks </label>
             </div>
-            <div class="col-sm-9 text-left">
+            <div class="col-sm-3">
                 <p>{{res.number_of_forks}}</p>
+            </div>
+            <div class="col-sm-3">
+                <p>{{res.number_of_forks_filter}}</p>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-3">
                 <label> latest_release_publish_date </label>
             </div>
-            <div class="col-sm-9 text-left">
+            <div class="col-sm-3">
                 <p> {{res.latest_release_publish_date}}</p>
+            </div>
+            <div class="col-sm-3">
             </div>
         </div>
         <div class="row">
             <div class="col-sm-3">
                 <label> licesne </label>
             </div>
-            <div class="col-sm-9 text-left">
+            <div class="col-sm-3">
                 <p>{{res.licesne}}</p>
+            </div>
+            <div class="col-sm-3">
             </div>
         </div>
         <div class="row">
             <div class="col-sm-3">
                 <label> open_issues_count </label>
             </div>
-            <div class="col-sm-9 text-left">
+            <div class="col-sm-3">
                 <p>{{res.open_issues_count}}</p>
+            </div>
+            <div class="col-sm-3">
+                {{res.open_issues_count_filter}}
             </div>
         </div>
         <div class="row">
             <div class="col-sm-3">
                 <label> subscribers_count </label>
             </div>
-            <div class="col-sm-9 text-left">
+            <div class="col-sm-3">
                 <p> {{res.subscribers_count}}</p>
+            </div>
+            <div class="col-sm-3">
+               <p>  {{res.subscribers_count_filter}} </p>
             </div>
         </div>
         

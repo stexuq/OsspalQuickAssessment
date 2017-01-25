@@ -1,3 +1,4 @@
+# coding=utf-8
 # query openhub and github
 import requests
 from bs4 import BeautifulSoup
@@ -67,25 +68,55 @@ def queryGithub(searchTerm):
       jsonLatest = json.loads(latestJson)
       jsonLicense = json.loads(licenseJson)
 
-      print '# of stars: ', jsonBasic['watchers_count']
-      print '# of forks: ', jsonBasic['forks_count']
-      print 'latest release publish date: ', jsonLatest['published_at']
-      print 'Licesne: ', jsonLicense['license']['name']
-      print 'Open Issues Count: ', jsonBasic['open_issues_count']
-      print 'Subscribers Count: ', jsonBasic['subscribers_count']
+      # print '# of stars: ', jsonBasic['watchers_count']
+      # print '# of forks: ', jsonBasic['forks_count']
+      # print 'latest release publish date: ', jsonLatest['published_at']
+      # print 'Licesne: ', jsonLicense['license']['name']
+      # print 'Open Issues Count: ', jsonBasic['open_issues_count']
+      # print 'Subscribers Count: ', jsonBasic['subscribers_count']
 
       map={}
       map["github_url"] = githubURL
-      map["number_of_starts"] = jsonBasic['watchers_count']
-      map["number_of_forks"] = jsonBasic['forks_count']
+
+      number_of_stars = jsonBasic['watchers_count']
+      number_of_forks = jsonBasic['forks_count']
+      open_issues_count = jsonBasic['open_issues_count']
+      subscribers_count = jsonBasic['subscribers_count']
+
+      map["number_of_stars"] = number_of_stars
+      if number_of_stars >= 100:
+            map["number_of_stars_filter"] = "√"
+      else:
+            map["number_of_stars_filter"] = "×" 
+
+      map["number_of_forks"] = number_of_forks
+      if number_of_forks >= 100:
+            map["number_of_forks_filter"] = "√"
+      else:
+            map["number_of_forks_filter"] = "×"
+
       map["latest_release_publish_date"] = jsonLatest['published_at']
+
       map["licesne"] = jsonLicense['license']['name']
-      map["open_issues_count"] = jsonBasic['open_issues_count']
-      map["subscribers_count"] = jsonBasic['subscribers_count']
+
+      map["open_issues_count"] = open_issues_count
+      if open_issues_count >= 5:
+            map["open_issues_count_filter"] = "√"
+      else:
+            map["open_issues_count_filter"] = "×" 
+
+      map["subscribers_count"] = subscribers_count
+      if subscribers_count >= 50:
+            map["subscribers_count_filter"] = "√"
+      else:
+            map["subscribers_count_filter"] = "×" 
+
+      #print json.dumps({"result":map})
       return json.dumps({"result": map})
 
 
 def queryOpenHub(queryTerm):
+    map={}
     api_key = "85690631252ec7681f0e7ac7f46725c4fcc8b56cd2f6c38cb4a7cf7961512f98"
     #query_term = "electron"
     page_num = "1"
@@ -94,36 +125,95 @@ def queryOpenHub(queryTerm):
     print url
     soup = BeautifulSoup(resp.content, "html.parser")
     # we use beautiful soup to get the #1 rank project id & url on Openhub
-    project_id = soup.find('id').get_text()
+    try:
+          map["query_openhub_success"] = "succeeded"
+          project_id = soup.find('id').get_text()
+    except: 
+          # query openhub failed, quit
+          map["query_openhub_success"] = "failed"
+          project_id = None
     print project_id
-    project_html_url = soup.find('html_url').get_text()
+    try:
+          project_html_url = soup.find('html_url').get_text()
+    except:
+          project_html_url = ''
     print project_html_url
 
-    project_query_url = "https://www.openhub.net/projects/" + str(project_id) + ".xml?api_key=" + api_key
-    print project_query_url
+    if map["query_openhub_success"] == "succeeded":
+      project_query_url = "https://www.openhub.net/projects/" + str(project_id) + ".xml?api_key=" + api_key
+      print project_query_url
 
-    openhub_resp_content = requests.get(project_query_url,verify=False).content
+      openhub_resp_content = requests.get(project_query_url,verify=False).content
 
-    openhub_soup = BeautifulSoup(openhub_resp_content, "html.parser")
-    project_twelve_month_contributor_count = openhub_soup.find('twelve_month_contributor_count').get_text()
-    project_total_contributor_count = openhub_soup.find('total_contributor_count').get_text()
-    project_twelve_month_commit_count = openhub_soup.find('twelve_month_commit_count').get_text()
-    project_total_commit_count = openhub_soup.find('total_commit_count').get_text()
-    project_total_code_lines = openhub_soup.find('total_code_lines').get_text()
-    project_main_language_name = openhub_soup.find('main_language_name').get_text()
-    project_license = openhub_soup.find('license').find('name').get_text()
-    project_project_activity_index_description = openhub_soup.find('project_activity_index').find('description').get_text()
+      # handle exception
 
-    map={}
-    map["project_html_url"] = project_html_url
-    map["project_twelve_month_contributor_count"] = project_twelve_month_contributor_count
-    map["project_total_contributor_count"] = project_total_contributor_count
-    map["project_twelve_month_commit_count"] = project_twelve_month_commit_count
-    map["project_total_commit_count"] = project_total_commit_count
-    map["project_total_code_lines"] = project_total_code_lines
-    map["project_main_language_name"] = project_main_language_name
-    map["project_license"] = project_license
-    map["project_project_activity_index_description"] = project_project_activity_index_description
+      openhub_soup = BeautifulSoup(openhub_resp_content, "html.parser")
+      try:
+            project_twelve_month_contributor_count = openhub_soup.find('twelve_month_contributor_count').get_text()
+      except:
+            project_twelve_month_contributor_count = None
+      try:
+            project_total_contributor_count = openhub_soup.find('total_contributor_count').get_text()
+      except:
+            project_total_contributor_count = None
+      
+      try:
+            project_twelve_month_commit_count = openhub_soup.find('twelve_month_commit_count').get_text()
+      except:
+            project_twelve_month_commit_count = None
+
+      try:
+            project_total_commit_count = openhub_soup.find('total_commit_count').get_text()
+      except:
+            project_total_commit_count = None
+      try:
+            project_total_code_lines = openhub_soup.find('total_code_lines').get_text()
+      except:
+            project_total_code_lines = None
+      try:
+            project_main_language_name = openhub_soup.find('main_language_name').get_text()
+      except:
+            project_main_language_name = None
+      try:
+            project_license = openhub_soup.find('license').find('name').get_text()
+      except:
+            project_license = None
+      try:
+            project_project_activity_index_description = openhub_soup.find('project_activity_index').find('description').get_text()
+      except:
+            project_project_activity_index_description = None
+
+      map["project_html_url"] = project_html_url
+      map["project_twelve_month_contributor_count"] = project_twelve_month_contributor_count
+      if project_twelve_month_contributor_count >= 2:
+            map["project_twelve_month_contributor_count_filter"] = "√"
+      else:
+            map["project_twelve_month_contributor_count_filter"] = "×"
+
+      map["project_total_contributor_count"] = project_total_contributor_count
+      if project_total_contributor_count >= 3:
+            map["project_total_contributor_count_filter"] = "√"
+      else:
+            map["project_total_contributor_count_filter"] = "×"
+
+      map["project_twelve_month_commit_count"] = project_twelve_month_commit_count
+      if project_twelve_month_commit_count >= 50:
+            map["project_twelve_month_commit_count_filter"] = "√"
+      else:
+            map["project_twelve_month_commit_count_filter"] = "×"
+
+      map["project_total_commit_count"] = project_total_commit_count
+      if project_total_commit_count >= 1000:
+            map["project_total_commit_count_filter"] = "√"
+      else:
+            map["project_total_commit_count_filter"] = "×"
+
+      map["project_total_code_lines"] = project_total_code_lines
+      map["project_main_language_name"] = project_main_language_name
+      map["project_license"] = project_license
+      map["project_project_activity_index_description"] = project_project_activity_index_description
+
+    print json.dumps({"result": map})
 
     return json.dumps({"result": map})
 
