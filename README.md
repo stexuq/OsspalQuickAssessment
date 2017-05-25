@@ -4,6 +4,8 @@
 
 ## Heroku deployment links
 
+https://devcenter.heroku.com/articles/getting-started-with-python#deploy-the-app
+
 http://virantha.com/2013/11/14/starting-a-simple-flask-app-with-heroku/
 
 https://progblog.io/How-to-deploy-a-Flask-App-to-Heroku/
